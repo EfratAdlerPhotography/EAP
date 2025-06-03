@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אפרת אדלר - צילום טבעי ומקצועי</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round:wght@400;700&family=Heebo:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #F3C9C1;
+            --secondary-color: #B7BACD;
+            --accent-pink: #E8A8A8;
+            --accent-purple: #9B9BC9;
+            --dark-bg: #2b2931;
+            --card-bg: #312e36;
+            --text-light: #F0EDF5;
+            --text-bright: #F8F8F8;
+            --text-soft: #D8D5DC;
+            --border-soft: rgba(243, 201, 193, 0.12);
+            --transition-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --section-spacing: 8rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Heebo', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #353240 100%);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 80%;
+            margin-right: 10%;
+            top: 20px;
+            background: transparent;
+            backdrop-filter: blur(0.0001px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-radius: 50px;
+            transition: all 0.4s var(--transition-gentle);
+        }
+
+        .nav-container {
+            max-width: 3200px;
+            margin: 0 auto;
+            height: 50px;
+            padding: 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            transform: scale(0.5);
+            display: flex;
+            align-items: center;
+            margin-left: -50px;
+            padding: 0;
+        }
+
+        .logo-image {
+            color: white;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.1) rotate(-360deg);
+            transition: all 1.5s var(--transition-spring);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Varela Round', 'Arial Black', sans-serif;
+            color: var(--text-bright);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-name {
+            color: #E8A8A8;
+            margin-left: 50px;
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3.5rem;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.4s var(--transition-gentle);
+            font-weight: 550;
+            position: relative;
+            padding: 0.85rem 0;
+            font-size: 1.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.4s var(--transition-gentle);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .gallery-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 120%;
+            right: -35px;
+            background: rgba(58, 55, 66, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 0.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-soft);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s var(--transition-gentle);
+            min-width: 150px;
+            z-index: 1001;
+        }
+
+        .gallery-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s var(--transition-gentle);
+            font-size: 1rem;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+            transform: translateX(5px);
+        }
+
+        .navbar-scrolled {
+            background: #4A4553;
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Page transitions */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s var(--transition-gentle);
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .fade-in {
+            animation: gentleFadeIn 1s var(--transition-gentle);
+        }
+
+        @keyframes gentleFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Hero Slider - Full Screen 16:9 */
+        .hero-slider {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            top: 10px;
+            border-bottom: 2px solid var(--border-soft);
+            background: radial-gradient(ellipse at center, rgba(243, 201, 193, 0.05) 0%, transparent 70%);
+        }
+
+        .slide {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1.2s var(--transition-gentle);
+            transform: translateX(50px) scale(0.98);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0) scale(1);
+        }
+
+        .slide-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .slide-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.8s var(--transition-gentle);
+        }
+
+        .slide.active .slide-content img {
+            transform: scale(0.99);
+            bottom: 0.1rem;
+        }
+
+        /* Slider Controls */
+        .slider-nav {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 3;
+            background: transparent;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(0.00001px);
+        }
+
+        .nav-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: rgba(248, 248, 248, 0.3);
+            cursor: pointer;
+            transition: all 0.4s var(--transition-gentle);
+            border: 2px solid transparent;
+            position: relative;
+            }
+
+        .nav-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.3);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(243, 201, 193, 0.4);
+        }
+
+        .nav-dot:hover:not(.active) {
+            background: rgba(243, 201, 193, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* About Section with Enhanced Styling */
+        .about-section {
+            padding: var(--section-spacing) 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            border-bottom: 1px solid var(--border-soft);
+            position: relative;
+            background: linear-gradient(135deg, rgba(243, 201, 193, 0.02) 0%, rgba(74, 69, 83, 0.02) 100%);
+            border-radius: 30px 30px 0 0;
+            margin-top: -30px;
+            z-index: 10;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        /* Jet Parallax Gallery */
+        .parallax-gallery {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(58, 55, 66, 0.3), rgba(74, 69, 83, 0.2));
+            border-radius: 30px;
+            margin: 2rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .parallax-gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(243, 201, 193, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .parallax-container {
+            display: flex;
+            padding: 0 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .parallax-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .parallax-item {
+            min-width: 200px;
+            height: 750px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.7s var(--transition-spring);
+            position: relative;
+            background: linear-gradient(135deg, var(--card-bg), rgba(74, 69, 83, 0.8));
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border: 0.1px solid var(--border-soft);
+        }
+
+        .parallax-item:hover {
+            min-width: 750px;
+            transform: translateY(-13px);
+            box-shadow: 0 25px 80px rgba(211, 192, 23, 0.5);
+            border-color: rgba(211, 192, 23, 0.5);
+        }
+
+        .parallax-item:not(:hover) {
+            min-width: 100px;
+        }
+
+        .parallax-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition-gentle);
+        }
+
+        .parallax-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .parallax-overlay {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: all 0.4s var(--transition-gentle);
+        }
+
+        .parallax-item:hover .parallax-overlay {
+            transform: translateY(0);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .category-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--section-spacing) 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            border-bottom: 1px solid var(--border-soft);
+            position: relative;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 4rem;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(243, 201, 193, 0.3);
+        }
+
+        /* About Content */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 6rem;
+            align-items: start;
+            margin-top: 4rem;
+        }
+
+        .about-text {
+            padding-top: 2rem;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-soft);
+        }
+
+        .about-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            text-shadow: 0 0 20px rgba(243, 201, 193, 0.2);
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            color: var(--text-soft);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s var(--transition-gentle) forwards;
+        }
+
+        .about-text p:nth-child(2) { animation-delay: 0.2s; }
+        .about-text p:nth-child(3) { animation-delay: 0.4s; }
+        .about-text p:nth-child(4) { animation-delay: 0.6s; }
+        .about-text p:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-text strong {
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .rotating-welcome-container {
+  position: absolute;
+            /* מיקום אבסולוטי כדי למקם אותה במרכז החיבור */
+            left: 50%;
+            transform: translateX(-50%);
+            /* מרכוז אופקי */
+            width: 150px;
+            /* גודל מוגדל פי 1.3 */
+            height: 150px;
+            /* גודל מוגדל פי 1.3 */
+            margin-top: 200px;
+            /* כדי למשוך אותה למעלה ולמקם במרכז החיבור (חצי מהגובה) */
+            z-index: 10;
+            /* ודא שהיא מעל הרקע והאודות */
+            pointer-events: none;
+            /* כדי לא להפריע לגלילה */
+
+        }
+
+        .rotating-welcome {
+            height: 100%;
+            width: 100%;
+            margin-top: 100px;
+            margin-right: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform-origin: center;
+            transition: transform 0.1s ease-in;
+
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-left: 3px solid var(--primary-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret 0.75s step-end infinite;
+            box-shadow: 0 0 10px rgba(243, 201, 193, 0.3);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(74, 69, 83, 0.8));
+            border-radius: 25px;
+            padding: 3.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s var(--transition-gentle);
+            border: 1px solid var(--border-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            border-color: rgba(243, 201, 193, 0.3);
+        }
+
+        /* Gallery */
+        .gallery-categories {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 1.4rem 3rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s var(--transition-gentle);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(243, 201, 193, 0.4);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.6s var(--transition-gentle);
+            height: 350px;
+            background: var(--card-bg);
+        }
+
+        .gallery-item.fade-out {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s var(--transition-gentle);
+        }
+
+        .gallery-item.fade-in {
+            animation: galleryFadeIn 0.6s var(--transition-gentle) forwards;
+        }
+
+        @keyframes galleryFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(243, 201, 193, 0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition-gentle);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(58, 55, 66, 0.9), rgba(74, 69, 83, 0.8));
+            color: var(--text-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s var(--transition-gentle);
+            font-weight: 500;
+            font-size: 1.2rem;
+            backdrop-filter: blur(15px);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            position: relative;
+            height: 350px;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s var(--transition-gentle);
+            transform-style: preserve-3d;
+        }
+
+        .testimonial-card:hover .card-inner {
+            transform: rotateY(-180deg);
+        }
+
+        .testimonial-card:hover .card-inner ::after {
+            transform: rotateY(360deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--primary-color), var(--card-bg));
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--card-bg), var(--dark-bg));
+            color: var(--text-bright);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            transform: rotateY(180deg);
+            border: 1px solid var(--border-soft);
+        }
+
+        .card-back blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            font-family: 'Rubik', 'Arial', sans-serif;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        .card-back cite {
+            font-weight: 600;
+            font-style: normal;
+            color: var(--primary-color);
+        }
+
+        /* Gallery Button */
+        .gallery-view-more {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .view-more-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+            border: none;
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s var(--transition-gentle);
+            box-shadow: 0 8px 30px rgba(243, 201, 193, 0.2);
+        }
+
+        .view-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(243, 201, 193, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, var(--card-bg), rgba(74, 69, 83, 0.9));
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-soft);
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--text-bright);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid rgba(183, 186, 205, 0.2);
+            border-radius: 15px;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            transition: all 0.3s var(--transition-gentle);
+            font-size: 1rem;
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(243, 201, 193, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s var(--transition-gentle);
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(243, 201, 193, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(74, 69, 83, 0.9));
+            padding: 5.5rem;
+            border-radius: 25px;
+            margin-bottom: 2.5rem;
+            margin-top: 30%;
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-card h3 {
+            color: var(--text-bright);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #E8A8A8;
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .contact-card p {
+            color: var(--text-soft);
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .contact-card strong {
+            color: var(--primary-color);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        .contact-btn {
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s var(--transition-gentle);
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .phone-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+        }
+
+        .email-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(243, 201, 193, 0.3);
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--dark-bg);
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(243, 201, 193, 0.4);
+            z-index: 3000;
+            text-align: center;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+            transition: all 0.5s var(--transition-gentle);
+            max-width: 450px;
+            display: none;
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .success-message h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .success-message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .success-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-bg);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .success-close:hover {
+            opacity: 1;
+        }
+
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 55, 66, 0.8);
+            z-index: 2999;
+            opacity: 0;
+            transition: opacity 0.5s var(--transition-gentle);
+            backdrop-filter: blur(8px);
+            display: none;
+        }
+
+        .success-overlay.show {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 55, 66, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(15px);
+            opacity: 0;
+            transition: all 0.5s var(--transition-gentle);
+        }
+
+        .lightbox.show {
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 15px;
+            transform: scale(0.9);
+            transition: transform 0.5s var(--transition-gentle);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox.show img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: var(--primary-color);
+            border: none;
+            color: var(--dark-bg);
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--transition-gentle);
+            box-shadow: 0 8px 25px rgba(243, 201, 193, 0.3);
+        }
+
+        .lightbox-close:hover {
+            background: var(--text-bright);
+            transform: scale(1.05) rotate(90deg);
+            box-shadow: 0 12px 35px rgba(243, 201, 193, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            color: var(--text-soft);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 0;
+            border-top: 1px solid var(--border-soft);
+            font-family: 'Heebo', 'Arial', sans-serif;
+        }
+
+        .footer i.fa-solid.fa-square { /* מכוון ספציפית לאייקון הטלפון בתוך הפוטר */
+            opacity: 0; /* לדוגמה, 60% שקיפות */
+        }
+
+        /* Enhanced Typography */
+        .accent-text {
+            font-family: 'Rubik', 'Arial', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--primary-color);
+        }
+
+        .quote-text {
+            font-family: 'Rubik', 'Arial', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .testimonial-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: rgba(74, 69, 83, 0.2);
+            border-radius: 20px;
+            border: 1px solid var(--border-soft);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(58, 55, 66, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--dark-bg);
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Process Steps */
+        .process-step {
+            text-align: center;
+            padding: 3.5rem;
+            background: linear-gradient(135deg, var(--card-bg), rgba(74, 69, 83, 0.8));
+            border-radius: 25px;
+            transition: all 0.4s var(--transition-gentle);
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .process-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .process-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Varela Round', 'Arial Black', sans-serif;
+            box-shadow: 0 8px 25px rgba(243, 201, 193, 0.3);
+        }
+
+        .process-title {
+            color: var(--text-bright);
+            margin-bottom: 1.5rem;
+            font-family: 'Heebo', 'Arial', sans-serif;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+
+        .process-description {
+            color: var(--text-soft);
+            font-family: 'Heebo', 'Arial', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Category Pages */
+        .category-page {
+            padding-top: 120px;
+        }
+
+        .category-hero {
+            text-align: center;
+            padding: 4rem 0 6rem;
+            background: linear-gradient(135deg, rgba(243, 201, 193, 0.1), rgba(183, 186, 205, 0.05));
+            border-radius: 30px;
+            margin: 2rem;
+        }
+
+        .category-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .category-hero p {
+            font-size: 1.3rem;
+            color: var(--text-soft);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .nav-links {
+                gap: 2.5rem;
+            }
+            
+            .section {
+                padding: 6rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .parallax-item:hover {
+                min-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.2rem 0;
+            }
+
+            .hero-slider {
+                height: 80vh;
+            }
+
+            .section, .about-section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .about-text {
+                font-size: 1.1rem;
+            }
+
+            .gallery-categories {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .contact-form,
+            .contact-card {
+                padding: 2.5rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .parallax-item {
+                min-width: 150px;
+            }
+
+            .parallax-item:hover {
+                min-width: 300px;
+            }
+
+            .parallax-item:not(:hover) {
+                min-width: 80px;
+            }
+
+            .nav-links {
+                gap: 2rem;
+            }
+
+            .dropdown-content {
+                right: -50px;
+                min-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.9rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 300px;
+            }
+
+            .category-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .contact-form,
+            .contact-card {
+                padding: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .parallax-item {
+                min-width: 120px;
+                height: 300px;
+            }
+
+            .parallax-item:hover {
+                min-width: 250px;
+            }
+
+            .parallax-item:not(:hover) {
+                min-width: 60px;
+            }
+
+            .category-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        button:focus,
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .gallery-item:focus,
+        .parallax-item:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-image"><img src="images/logo.png" alt="logo-image"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">דף הבית</a></li>
+                <li><a href="#" onclick="showPage('about')">אודות</a></li>
+                <li class="gallery-dropdown">
+                    <a href="#" onclick="showPage('gallery')">גלריה <i class=" fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="showCategoryPage('newborn')">ניו בורן</a>
+                        <a href="#" onclick="showCategoryPage('oneyear')">גיל שנה</a>
+                        <a href="#" onclick="showCategoryPage('chalaka')">חלאקה</a>
+                        <a href="#" onclick="showCategoryPage('batmitzvah')">בת מצווה</a>
+                        <a href="#" onclick="showCategoryPage('family')">משפחות</a>
+                    </div>
+                </li>
+                <li><a href="#" onclick="showPage('albums')">אלבומים</a></li>
+                <li><a href="#" onclick="showPage('testimonials')">המלצות</a></li>
+                <li><a href="#" onclick="showPage('contact')">צרו קשר</a></li>
+            </ul>
+            <div class="logo-name"><h1>| אפרת אדלר |</h1></div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Slider -->
+        <section class="hero-slider">
+            <div class="slide active">
+                <div class="slide-content">
+                    <img src="images/newborn1.webp" alt="ניו בורן">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="images/1year1.webp" alt="גיל שנה">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="images/chalake-example.jpg" alt="חלאקה">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="images/batmitzva1.webp" alt="בת מצווה">
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <img src="images/family1.webp" alt="משפחה">
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="slider-nav">
+                <span class="nav-dot active" onclick="currentSlide(1)" aria-label="Slide 1"></span>
+                <span class="nav-dot" onclick="currentSlide(2)" aria-label="Slide 2"></span>
+                <span class="nav-dot" onclick="currentSlide(3)" aria-label="Slide 3"></span>
+                <span class="nav-dot" onclick="currentSlide(4)" aria-label="Slide 4"></span>
+                <span class="nav-dot" onclick="currentSlide(5)" aria-label="Slide 5"></span>
+            </div>
+        </section>
+
+        <!-- About Preview -->
+        <section class="about-section">
+            <h2 class="section-title typewriter">קצת עליי</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>ברוכים הבאים לעולם הצילום שלי <i class="fa-solid fa-camera-retro" style="color: #F3C9C1; margin-right: 0.5rem;"></i></h3>
+                    <p>שלום, אני אפרת אדלר, צלמת בעלת קורס מקצועי וניסיון בשטח בתחום צילום משפחות ואירועים מיוחדים.</p>
+                    <p>אני מתמחה במגוון רחב של תחומי צילום:</p>
+                    <p><strong>• צילומי ניו בורן</strong> - התמחות בתיעוד הרגעים הראשונים והעדינים ביותר בחיים</p>
+                    <p><strong>• צילומי גיל שנה</strong> - חגיגת אבן הדרך החשובה הראשונה בחיי הילדים</p>
+                    <p><strong>• צילומי חלאקה</strong> - הנצחת המנהג היפה הזה ותיעוד רגעים נרגשים ומשמעותיים גם לפני</p>
+                    <p><strong>• צילומי בת מצווה</strong> - תיעוד אירוע מרגש ומשמעותי בחיי הנערה הצעירה</p>
+                    <p><strong>• צילומי משפחות</strong> - קליטת האהבה, החום והקשרים המיוחדים בין בני המשפחה</p>
+                    <p><strong>• עיצוב אלבומים מותאמים אישית</strong> - יצירת זכרונות מוחשיים ויפים לשמירה לדורות</p>
+                    <p class="accent-text">"אני מאמינה שכל משפחה היא ייחודית ומיוחדת, ותפקידי הוא לתפוס את הרגעים האמיתיים והטבעיים ביותר."</p>    
+                </div>
+                <div class="rotating-welcome-container" id="rotatingWelcome">
+                    <div class="rotating-welcome">
+                <img src="images/welcome.png" alt="welcome-rotating">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jet Parallax Gallery -->
+        <section class="parallax-gallery">
+            <h2 class="section-title" style="margin-bottom: 6rem;">הגלריות שלי</h2>
+            <div class="parallax-container">
+                <div class="parallax-item" onclick="showCategoryPage('newborn')" tabindex="0">
+                    <img src="images/newborn1.webp" alt="צילומי ניו בורן">
+                    <div class="parallax-overlay">
+                        <div class="category-title">ניו בורן</div>
+                        <div class="category-description">הרגעים הראשונים והעדינים ביותר</div>
+                    </div>
+                </div>
+                <div class="parallax-item" onclick="showCategoryPage('oneyear')" tabindex="0">
+                    <img src="images/1year1.webp" alt="צילומי גיל שנה">
+                    <div class="parallax-overlay">
+                        <div class="category-title">גיל שנה</div>
+                        <div class="category-description">אבן דרך ראשונה וחשובה</div>
+                    </div>
+                </div>
+                <div class="parallax-item" onclick="showCategoryPage('chalaka')" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="צילומי חלאקה">
+                    <div class="parallax-overlay">
+                        <div class="category-title">חלאקה</div>
+                        <div class="category-description">מסורת יהודית וחגיגה קדושה</div>
+                    </div>
+                </div>
+                <div class="parallax-item" onclick="showCategoryPage('batmitzvah')" tabindex="0">
+                    <img src="images/batmitzva1.webp" alt="צילומי בת מצווה">
+                    <div class="parallax-overlay">
+                        <div class="category-title">בת מצווה</div>
+                        <div class="category-description">חגיגות משמעותיות ומרגשות</div>
+                    </div>
+                </div>
+                <div class="parallax-item" onclick="showCategoryPage('family')" tabindex="0">
+                    <img src="images/family1.webp" alt="צילומי משפחות">
+                    <div class="parallax-overlay">
+                        <div class="category-title">משפחות</div>
+                        <div class="category-description">אהבה, חום וקשרים מיוחדים</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section">
+            <h2 class="section-title">מה אומרים עליי</h2>
+            <div class="testimonial-intro">
+                <p class="accent-text" style="font-size: 1.3rem;">מה שהכי חשוב לי זה לראות משפחות שמחות ומרוצות</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #F3C9C1, #423D4A);"></div>
+                        </div>
+                        <div class="card-back">
+                            <blockquote>"אפרת הצליחה לתפוס את השמחה והאהבה של המשפחה שלנו בצורה מושלמת. התמונות יפות להפליא ונשמרו לנו זכרונות יקרים לכל החיים."</blockquote>
+                            <cite>- משפחת כהן</cite>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #B7BACD, #312F36);"></div>
+                        </div>
+                        <div class="card-back">
+                            <blockquote>"צילומי הבת מצווה של הבת שלי היו פשוט מושלמים. אפרת ידעה איך ליצור אווירה נעימה ותפסה כל רגע מיוחד באירוע."</blockquote>
+                            <cite>- רחל לוי</cite>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(225deg, #F3C9C1, #B7BACD);"></div>
+                        </div>
+                        <div class="card-back">
+                            <blockquote>"צילומי הניו בורן של התינוקת שלנו היו חוויה מדהימה. אפרת סבלנית, מקצועית והתמונות פשוט קסומות!"</blockquote>
+                            <cite>- דני ושרה אברהם</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Preview -->
+        <section class="section">
+            <h2 class="section-title">צרו קשר</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xjkrbzpr" method="POST">
+                        <div class="form-group">
+                            <label for="fullName">שם מלא *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="מה שמך?">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">טלפון *</label>
+                            <input type="tel" id="phone" pattern="(05[0-9]{8}|0[0-9]{9})" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">אימייל *</label>
+                            <input type="email" id="email" name="email" required placeholder="אימייל לחזרה">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">הודעה *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="אני זמינה לשאלות ולבקשות שלכם"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">שלחו הודעה</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>אפרת אדלר</h3>
+                        <p style="color: #F3C9C1; font-weight: 500; margin-bottom: 2rem;">צלמת מקצועית</p>
+                        <p><strong>טלפון:</strong> 054-842-2817</p>
+                        <p><strong>אימייל:</strong> e0548422817@gmail.com</p>
+                        <p><strong>אזור השירות:</strong></p>
+                        <p>לוד, מודיעין עילית, בית שמש והסביבה</p>
+                    </div>
+                    <div class="contact-buttons">
+                        <button class="contact-btn phone-btn" onclick="window.open('tel:054-842-2817')">התקשרו עכשיו</button>
+                        <button class="contact-btn email-btn" onclick="window.open('mailto:e0548422817@gmail.com')">שלחו אימייל</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div style="margin-top: 120px;"></div>
+        <section class="section">
+            <h2 class="section-title">תהליך העבודה שלי</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 4rem;">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3 class="process-title">ייעוץ ותכנון מוקדם</h3>
+                    <p class="process-description">פגישת היכרות מעמיקה לתכנון הצילום, הבנת הצרכים, בחירת מיקום מושלם ותיאום ציפיות.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3 class="process-title">הכנות מקצועיות</h3>
+                    <p class="process-description">סיור במיקום הצילום, בדיקת תנאי התאורה, הכנת ציוד מקצועי והתייעצות נוספת.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3 class="process-title">יום הצילום המושלם</h3>
+                    <p class="process-description">צילום מקצועי באווירה נעימה ורגועה, תוך הקפדה על פרטים קטנים שיוצרים את התמונה המושלמת.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3 class="process-title">עריכה ועיבוד מקצועי</h3>
+                    <p class="process-description">עיבוד מקצועי ומדויק של התמונות תוך שמירה על הטבעיות והאותנטיות.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <h3 class="process-title">מסירה וגלריה דיגיטלית</h3>
+                    <p class="process-description">מסירת התמונות בגלריה דיגיטלית איכותית עם אפשרות להזמנת הדפסות ואלבומים.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">6</div>
+                    <h3 class="process-title">שירותים נוספים</h3>
+                    <p class="process-description">עיצוב אלבומים יוקרתיים, הדפסות איכותיות וייעוץ לתלייה וארגון התמונות בבית.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page">
+        <div style="margin-top: 120px;"></div>
+        <section class="section">
+            <h2 class="section-title">גלריית עבודות</h2>
+            <div class="gallery-categories">
+                <button class="category-btn active" onclick="filterFullGallery('all')">הכל</button>
+                <button class="category-btn" onclick="filterFullGallery('newborn')">ניו בורן</button>
+                <button class="category-btn" onclick="filterFullGallery('oneyear')">גיל שנה</button>
+                <button class="category-btn" onclick="filterFullGallery('chalaka')">חלאקה</button>
+                <button class="category-btn" onclick="filterFullGallery('batmitzvah')">בת מצווה</button>
+                <button class="category-btn" onclick="filterFullGallery('family')">משפחות</button>
+            </div>
+            <div id="fullGallery" class="gallery-grid">
+                <div class="gallery-item" data-category="newborn" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/newborn1.webp" alt="ניו בורן - תינוקת מתוקה">
+                    <div class="gallery-overlay"><span>ניו בורן - תינוקת מתוקה</span></div>
+                </div>
+                <div class="gallery-item" data-category="family" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/family1.webp" alt="משפחת כהן">
+                    <div class="gallery-overlay"><span>משפחת כהן</span></div>
+                </div>
+                <div class="gallery-item" data-category="chalaka" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="חלאקה מסורתית">
+                    <div class="gallery-overlay"><span>חלאקה מסורתית</span></div>
+                </div>
+                <div class="gallery-item" data-category="oneyear" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/1year1.webp" alt="חגיגת שנה ראשונה">
+                    <div class="gallery-overlay"><span>חגיגת שנה ראשונה</span></div>
+                </div>
+                <div class="gallery-item" data-category="newborn" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/newborn1.webp" alt="ניו בורן - שינה עמוקה">
+                    <div class="gallery-overlay"><span>ניו בורן - שינה עמוקה</span></div>
+                </div>
+                <div class="gallery-item" data-category="family" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/family1.webp" alt="שמחה משפחתית">
+                    <div class="gallery-overlay"><span>שמחה משפחתית</span></div>
+                </div>
+                <div class="gallery-item" data-category="batmitzvah" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/batmitzva1.webp" alt="חגיגה מיוחדת">
+                    <div class="gallery-overlay"><span>חגיגה מיוחדת</span></div>
+                </div>
+                <div class="gallery-item" data-category="chalaka" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="מסורת יהודית">
+                    <div class="gallery-overlay"><span>מסורת יהודית</span></div>
+                </div>
+                <div class="gallery-item" data-category="oneyear" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/1year1.webp" alt="גיל שנה שמח">
+                    <div class="gallery-overlay"><span>גיל שנה שמח</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Category Pages -->
+    <div id="newborn" class="page category-page">
+        <div class="category-hero">
+            <h1>צילומי ניו בורן</h1>
+            <p>הרגעים הראשונים והעדינים ביותר בחיים - תיעוד התמימות והיופי של התינוקות החדשים</p>
+        </div>
+        <section class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/newborn1.webp" alt="ניו בורן - תינוק ישן">
+                    <div class="gallery-overlay"><span>תינוק ישן בשלווה</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/newborn1.webp" alt="ניו בורן - תינוקת עם כובע">
+                    <div class="gallery-overlay"><span>תינוקת עם כובע ורוד</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/newborn1.webp" alt="ניו בורן - תינוק בסל">
+                    <div class="gallery-overlay"><span>תינוק בסל נצרים</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div id="oneyear" class="page category-page">
+        <div class="category-hero">
+            <h1>צילומי גיל שנה</h1>
+            <p>חגיגת אבן הדרך החשובה הראשונה בחיי הילדים עם שמחה, צבעים ושמחת חיים</p>
+        </div>
+        <section class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/1year1.webp" alt="בן שנה - עוגת יום הולדת">
+                    <div class="gallery-overlay"><span>חגיגה עם העוגה</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/1year1.webp" alt="בן שנה - משחק">
+                    <div class="gallery-overlay"><span>רגעי משחק וחקירה</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/1year1.webp" alt="בן שנה - חיוכים">
+                    <div class="gallery-overlay"><span>חיוכים וצחוקים</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    
+    <div id="chalaka" class="page category-page">
+        <div class="category-hero">
+            <h1>צילומי חלאקה</h1>
+            <p>כיבוד המסורת היהודית ותיעוד רגעים נרגשים ומשמעותיים בחגיגה קדושה זו</p>
+        </div>
+        <section class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="חלאקה - טקס הגזירה">
+                    <div class="gallery-overlay"><span>טקס הגזירה המסורתי</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="חלאקה - שמחת המשפחה">
+                    <div class="gallery-overlay"><span>שמחת המשפחה</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/chalake-example.jpg" alt="חלאקה - הילד החגיגי">
+                    <div class="gallery-overlay"><span>הילד בזמן החגיגה</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div id="batmitzvah" class="page category-page">
+        <div class="category-hero">
+            <h1>צילומי בת מצווה</h1>
+            <p>תיעוד רגעים מרגשים ומשמעותיים בחיי הנערות הצעירות במעבר לבגרות</p>
+        </div>
+        <section class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/batmitzva1.webp" alt="בת מצווה - רגע הברכה">
+                    <div class="gallery-overlay"><span>רגע הברכה המרגש</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/batmitzva1.webp" alt="בת מצווה - חגיגה">
+                    <div class="gallery-overlay"><span>חגיגה עם המשפחה</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/batmitzva1.webp" alt="בת מצווה - פורטרט">
+                    <div class="gallery-overlay"><span>פורטרט חגיגי</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+   
+    <div id="family" class="page category-page">
+        <div class="category-hero">
+            <h1>צילומי משפחות</h1>
+            <p>קליטת האהבה, החום והקשרים המיוחדים בין בני המשפחה ברגעים טבעיים ואמיתיים</p>
+        </div>
+        <section class="section">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/family1.webp" alt="משפחה בפארק">
+                    <div class="gallery-overlay"><span>משפחה שמחה בפארק</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/family1.webp" alt="משפחה על החוף">
+                    <div class="gallery-overlay"><span>רגעים על החוף</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)" tabindex="0">
+                    <img src="images/family1.webp" alt="משפחה בבית">
+                    <div class="gallery-overlay"><span>חום הבית</span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Albums Page -->
+    <div id="albums" class="page">
+        <div style="margin-top: 120px;"></div>
+        <section class="section">
+            <h2 class="section-title">אלבומים</h2>
+            <div style="margin-bottom: 4rem; text-align: center;">
+                <div class="testimonial-intro">
+                    <p class="accent-text" style="font-size: 1.3rem;">אני כאן כדי להפוך את החלום שלכם למציאות. בואו נתחיל לתכנן את הצילום המושלם עבורכם</p>
+                </div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="text-align: center; margin-bottom: 2.5rem; color: var(--text-bright); font-size: 1.5rem;">שלחו לי הודעה ואחזור אליכם בהקדם</h3>
+                    <form id="contactFormFull" action="https://formspree.io/f/xjkrbzpr" method="POST">
+                        <div class="form-group">
+                            <label for="fullNameFull">שם מלא *</label>
+                            <input type="text" id="fullNameFull" name="fullName" required placeholder="הכניסו את השם המלא">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneFull">טלפון *</label>
+                            <input type="tel" id="phoneFull" name="phone" pattern="(05[0-9]{8}|0[0-9]{9})" required placeholder="מספר טלפון או פלאפון">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailFull">אימייל *</label>
+                            <input type="email" id="emailFull" name="email" required placeholder="אימייל שלכם">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTypeFull">סוג הפנייה</label>
+                            <select id="eventTypeFull" name="eventType">
+                                <option value="">בחרו סוג צילום</option>
+                                <option value="newborn">צילומי ניו בורן</option>
+                                <option value="oneyear">גיל שנה</option>
+                                <option value="chalaka">חלאקה</option>
+                                <option value="batmitzvah">בת מצווה</option>
+                                <option value="family">צילומי משפחה</option>
+                                <option value="other">אחר</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="messageFull">ספרו לי על האירוע שלכם *</label>
+                            <textarea id="messageFull" name="message" rows="6" required placeholder="ספרו לי על האירוע, התאריך המתוכנן, כמה אנשים, האווירה הרצויה ואיך אוכל לעזור לכם ליצור זכרונות מושלמים..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">שלחו הודעה ואתחיל לתכנן עבורכם</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>אפרת אדלר</h3>
+                        <p style="color: #F3C9C1; font-weight: 500; margin-bottom: 2.5rem; font-size: 1.2rem;">צלמת מקצועית לאירועים ומשפחות</p>
+                        <div style="text-align: right; line-height: 2.2;">
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">📞 טלפון:</strong> 054-842-2817</p>
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">✉️ אימייל:</strong> e0548422817@gmail.com</p>
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">📍 אזור השירות:</strong></p>
+                            <p style="margin-bottom: 2.5rem; padding-right: 1rem;">לוד, מודיעין עילית, בית שמש והסביבה</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-buttons">
+                        <button class="contact-btn phone-btn" onclick="window.open('tel:054-842-2817')">
+                            📞 התקשרו עכשיו
+                        </button>
+                        <button class="contact-btn email-btn" onclick="window.open('mailto:e0548422817@gmail.com?subject=פניה לצילום&body=שלום אפרת, אני מעוניין/ת לשמוע פרטים על...')">
+                            ✉️ שלחו אימייל
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+    <!-- Testimonials Page -->
+    <div id="testimonials" class="page">
+        <div style="margin-top: 120px;"></div>
+        <section class="section">
+            <h2 class="section-title">המלצות מלקוחות</h2>
+            <div class="testimonial-intro">
+                <p class="accent-text" style="font-size: 1.3rem;">מה שהכי חשוב לי זה לראות משפחות שמחות ומרוצות</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem;">
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "אפרת הצליחה לתפוס את השמחה והאהבה של המשפחה שלנו בצורה מושלמת. התמונות יפות להפליא ונשמרו לנו זכרונות יקרים לכל החיים."
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">משפחת כהן - צילומי משפחה</cite>
+                </div>
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "צילומי הבת מצווה של הבת שלי היו פשוט מושלמים. אפרת ידעה איך ליצור אווירה נעימה ותפסה כל רגע מיוחד באירוע."
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">רחל לוי - בת מצווה</cite>
+                </div>
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "צילומי הניו בורן של התינוקת שלנו היו חוויה מדהימה. אפרת סבלנית, מקצועית והתמונות פשוט קסומות!"
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">דני ושרה אברהם - ניו בורן</cite>
+                </div>
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "חגיגת השנה הראשונה של הבן שלנו הפכה לזכרון בלתי נשכח הודות לאפרת. היא ידעה איך ליצור אווירה כיפית ולתפוס את החיוכים הטבעיים."
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">משפחת רוזן - גיל שנה</cite>
+                </div>
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "צילומי החלאקה של הבן שלנו היו מרגשים ומכובדים. אפרת הבינה את חשיבות המסורת ותפסה את הרגש והשמחה של היום הזה בצורה מושלמת."
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">משפחת גולדברג - חלאקה</cite>
+                </div>
+                <div class="card">
+                    <blockquote class="quote-text" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-soft);">
+                        "האלבום המותאם אישית שעיצבה לנו אפרת הוא פשוט יצירת אמנות. איכות ההדפסה יוצאת דופן והעיצוב מקצועי ויפהפה."
+                    </blockquote>
+                    <cite style="font-weight: 600; color: #F3C9C1;">יוסי ומרים חן - אלבום מותאם אישית</cite>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <div style="margin-top: 120px;"></div>
+        <section class="section">
+            <h2 class="section-title">צרו קשר</h2>
+            <div style="margin-bottom: 4rem; text-align: center;">
+                <div class="testimonial-intro">
+                    <p class="accent-text" style="font-size: 1.3rem;">אני כאן כדי להפוך את החלום שלכם למציאות. בואו נתחיל לתכנן את הצילום המושלם עבורכם</p>
+                </div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="text-align: center; margin-bottom: 2.5rem; color: var(--text-bright); font-size: 1.5rem;">שלחו לי הודעה ואחזור אליכם בהקדם</h3>
+                    <form id="contactFormFull" action="https://formspree.io/f/xjkrbzpr" method="POST">
+                        <div class="form-group">
+                            <label for="fullNameFull">שם מלא *</label>
+                            <input type="text" id="fullNameFull" name="fullName" required placeholder="הכניסו את השם המלא">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneFull">טלפון *</label>
+                            <input type="tel" id="phoneFull" name="phone" pattern="(05[0-9]{8}|0[0-9]{9})" required placeholder="מספר טלפון או פלאפון">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailFull">אימייל *</label>
+                            <input type="email" id="emailFull" name="email" required placeholder="אימייל שלכם">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTypeFull">סוג הפנייה</label>
+                            <select id="eventTypeFull" name="eventType">
+                                <option value="">בחרו סוג צילום</option>
+                                <option value="newborn">צילומי ניו בורן</option>
+                                <option value="oneyear">גיל שנה</option>
+                                <option value="chalaka">חלאקה</option>
+                                <option value="batmitzvah">בת מצווה</option>
+                                <option value="family">צילומי משפחה</option>
+                                <option value="other">אחר</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="messageFull">ספרו לי על האירוע שלכם *</label>
+                            <textarea id="messageFull" name="message" rows="6" required placeholder="ספרו לי על האירוע, התאריך המתוכנן, כמה אנשים, האווירה הרצויה ואיך אוכל לעזור לכם ליצור זכרונות מושלמים..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">שלחו הודעה ואתחיל לתכנן עבורכם</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>אפרת אדלר</h3>
+                        <p>-----------------------------------</p>
+                        <p style="color: #F3C9C1; font-weight: 500; margin-bottom: 2.5rem; font-size: 1.2rem;">צלמת מקצועית לאירועים ומשפחות</p>
+                        <div style="text-align: right; line-height: 2.2;">
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">📞 טלפון:</strong> 054-842-2817</p>
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">📧 אימייל:</strong> e0548422817@gmail.com</p>
+                            <p style="margin-bottom: 1.2rem;"><strong style="color: #F3C9C1;">📍 אזור השירות:</strong></p>
+                            <p style="margin-bottom: 2.5rem; padding-right: 1rem;">לוד, מודיעין עילית, בית שמש והסביבה</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-buttons">
+                        <button class="contact-btn phone-btn" onclick="window.open('tel:054-842-2817')">
+                            📞 התקשרו עכשיו
+                        </button>
+                        <button class="contact-btn email-btn" onclick="window.open('mailto:e0548422817@gmail.com?subject=פניה לצילום&body=שלום אפרת, אני מעוניין/ת לשמוע פרטים על...')">
+                            📧 שלחו אימייל
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Success Message Overlay -->
+    <div id="successOverlay" class="success-overlay"></div>
+    <div id="successMessage" class="success-message">
+        <button class="success-close" onclick="hideSuccessMessage()">✕</button>
+        <h3>תודה רבה! 🎉</h3>
+        <p>ההודעה שלכם נשלחה בהצלחה.<br>אחזור אליכם בהקדם האפשרי!</p>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+        <img id="lightbox-image" src="" alt="">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 - כל הזכויות שמורות לעמיאל מאזוז <i class="fa-solid fa-square"></i>-<i class="fa-solid fa-square"></i> עיצוב ובניית אתרים <i class="fa-solid fa-square"></i><i class="fa-solid fa-laptop-code"></i><i class="fa-solid fa-square"></i>|<i class="fa-solid fa-square"></i> 053-655-5534 <i class="fa-solid fa-square"></i><i class="fa-solid fa-phone"></i> <i class="fa-solid fa-square"></i> |<i class="fa-solid fa-square"></i>  amielmazuz@gmail.com <i class="fa-solid fa-square"></i><i class="fa-solid fa-envelope"></i></p>
+        <!--     <button>"<a href="https://www.inn.co.il/"> <img src="images/ami_logo.png.jpg" alt="amiel-logo"></a></button>     -->
+    </footer>
+
+    <script>
+        // Enhanced Slider functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let slideInterval;
+        let isTransitioning = false;
+
+        function showSlide(index) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+            
+            setTimeout(() => {
+                slides[index].classList.add('active');
+                document.querySelectorAll('.nav-dot')[index].classList.add('active');
+                
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 600);
+            }, 100);
+        }
+
+        function nextSlide() {
+            if (isTransitioning) return;
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function changeSlide(direction) {
+            if (isTransitioning) return;
+            currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
+            showSlide(currentSlideIndex);
+            resetInterval();
+        }
+
+        function currentSlide(index) {
+            if (isTransitioning) return;
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+            resetInterval();
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 7000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
+        // Enhanced keyboard navigation
+        function handleKeyPress(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    changeSlide(1);
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    changeSlide(-1);
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    hideSuccessMessage();
+                    break;
+            }
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+                page.style.display = 'none';
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            targetPage.style.display = 'block';
+            
+            setTimeout(() => {
+                targetPage.classList.add('active');
+                targetPage.classList.add('fade-in');
+            }, 50);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Category page navigation
+        function showCategoryPage(categoryId) {
+            showPage(categoryId);
+        }
+
+        // Enhanced gallery filtering
+        function filterGallery(category) {
+            const items = document.querySelectorAll('#home .gallery-item');
+            const buttons = document.querySelectorAll('#home .category-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // First, fade out non-matching items
+            items.forEach((item, index) => {
+                if (category !== 'all' && item.dataset.category !== category) {
+                    item.classList.add('fade-out');
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                        item.classList.remove('fade-out');
+                    }, 400);
+                }
+            });
+            
+            // Then, fade in matching items with stagger
+            setTimeout(() => {
+                let visibleIndex = 0;
+                items.forEach((item, index) => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.classList.add('fade-in');
+                        }, visibleIndex * 100);
+                        visibleIndex++;
+                    }
+                });
+            }, 500);
+        }
+
+        function filterFullGallery(category) {
+            const items = document.querySelectorAll('#fullGallery .gallery-item');
+            const buttons = document.querySelectorAll('#gallery .category-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            items.forEach((item, index) => {
+                if (category !== 'all' && item.dataset.category !== category) {
+                    item.classList.add('fade-out');
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                        item.classList.remove('fade-out');
+                    }, 300);
+                } else {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.classList.add('fade-in');
+                    }, index * 80);
+                }
+            });
+        }
+
+        // Lightbox functionality
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            const img = element.querySelector('img');
+            if (img) {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+            }
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                lightbox.classList.add('show');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 500);
+        }
+
+        // Success message functionality with 5-second timeout
+        function showSuccessMessage() {
+            const overlay = document.getElementById('successOverlay');
+            const message = document.getElementById('successMessage');
+            
+            overlay.style.display = 'block';
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                overlay.classList.add('show');
+                message.classList.add('show');
+            }, 10);
+            
+            // Auto-hide after 5 seconds and redirect to home
+            setTimeout(() => {
+                hideSuccessMessage();
+                showPage('home');
+            }, 5000);
+        }
+
+        function hideSuccessMessage() {
+            const overlay = document.getElementById('successOverlay');
+            const message = document.getElementById('successMessage');
+            
+            overlay.classList.remove('show');
+            message.classList.remove('show');
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                message.style.display = 'none';
+            }, 500);
+        }
+
+        // Enhanced form handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = 'שולח... <span class="loading-spinner"></span>';
+            submitBtn.disabled = true;
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showSuccessMessage();
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('שגיאה בשליחת ההודעה. אנא נסו שוב או צרו קשר ישירות בטלפון: 054-842-2817');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // Enhanced navbar scroll effect
+        function handleScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 80) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        }
+
+        // Parallax gallery enhanced interactions
+        function initParallaxGallery() {
+            const parallaxItems = document.querySelectorAll('.parallax-item');
+            
+            parallaxItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+                
+                // Keyboard navigation for parallax items
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+        }
+
+        // Phone number validation
+        function validatePhoneNumber(input) {
+            const phonePattern = /(05[0-9]{8}|0[0-9]{9})/;
+            const value = input.value.replace(/[-\s]/g, ''); // Remove dashes and spaces
+            
+            if (value && !phonePattern.test(value)) {
+                input.setCustomValidity('מספר הטלפון חייב להתחיל ב-05 ו8 ספרות נוספות או ב-0 ו8 ספרות נוספות');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start slideshow
+            startSlideShow();
+            
+            // Initialize parallax gallery
+            initParallaxGallery();
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleKeyPress);
+            
+            // Add scroll listener with throttling
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(handleScroll, 8);
+            });
+            
+            // Form event listeners
+            const contactForm = document.getElementById('contactForm');
+            const contactFormFull = document.getElementById('contactFormFull');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleFormSubmit);
+                
+                // Add phone validation
+                const phoneInput = contactForm.querySelector('#phone');
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function() {
+                        validatePhoneNumber(this);
+                    });
+                }
+            }
+            
+            if (contactFormFull) {
+                contactFormFull.addEventListener('submit', handleFormSubmit);
+                
+                // Add phone validation
+                const phoneInputFull = contactFormFull.querySelector('#phoneFull');
+                if (phoneInputFull) {
+                    phoneInputFull.addEventListener('input', function() {
+                        validatePhoneNumber(this);
+                    });
+                }
+            }
+            
+            // Close lightbox when clicking outside image
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLightbox();
+                }
+            });
+            
+            // Close success message when clicking overlay
+            document.getElementById('successOverlay').addEventListener('click', function() {
+                hideSuccessMessage();
+            });
+            
+            // Gallery item keyboard navigation
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(this);
+                    }
+                });
+            });
+
+            // Error handling for images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.background = 'linear-gradient(135deg, #F3C9C1, #423D4A)';
+                    this.style.display = 'flex';
+                    this.style.alignItems = 'center';
+                    this.style.justifyContent = 'center';
+                    this.style.color = '#F6F6F6';
+                    this.style.fontSize = '1rem';
+                    this.innerHTML = '<span style="text-align: center;">תמונה בטעינה...</span>';
+                });
+            });
+
+            // Smooth scroll for internal links
+            document.addEventListener('click', function(e) {
+                if (e.target.matches('a[href^="#"]')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+
+            // Add loading states to buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.type !== 'submit') {
+                        this.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animatedElements = document.querySelectorAll('.card, .process-step, .gallery-item, .testimonial-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Enhanced mobile support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    changeSlide(1);
+                } else {
+                    // Swipe right - previous slide
+                    changeSlide(-1);
+                }
+            }
+        }
+
+        // Add touch events for mobile slider
+        document.addEventListener('touchstart', handleTouchStart, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+        // Preload critical images
+        function preloadImages() {
+            const criticalImages = [
+                'images/batmitzva1.webp',
+                'images/newborn1.webp',
+                'images/1year1.webp',
+                'images/family1.webp',
+                'images/chalake-example.jpg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Call preload on page load
+        window.addEventListener('load', preloadImages);
+
+        // Rotating welcome smiley
+        const rotatingWelcome = document.querySelector('.rotating-welcome');
+        let scrollPosition = 0;
+        let rotation = 0;
+        const rotationFactor = 0.1; // קובע את מהירות הסיבוב ביחס לגלילה
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
+            const scrollDifference = currentScrollPosition - scrollPosition;
+
+            rotation += scrollDifference * rotationFactor;
+            rotatingWelcome.style.transform = `rotate(${rotation}deg)`;
+
+            scrollPosition = currentScrollPosition;
+        });
+
+    </script>
+</body>
+</html>
